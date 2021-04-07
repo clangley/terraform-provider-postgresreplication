@@ -1,0 +1,39 @@
+builds:
+  - binary: "{{ .ProjectName }}_v{{ .Version }}"
+    env:
+      - CGO_ENABLED=0
+    goos:
+      - freebsd
+      - windows
+      - linux
+      - darwin
+    goarch:
+      - amd64
+      - 386
+      - arm
+      - arm64
+    goarm:
+      - 7
+    ignore:
+      - goos: darwin
+        goarch: '386'
+      - goos: freebsd
+        goarch: 'arm64'
+archives:
+- format: zip
+  name_template: '{{ .ProjectName }}_{{ .Version }}_{{ .Os }}_{{ .Arch }}'
+
+checksum:
+  name_template: '{{ .ProjectName }}_{{ .Version }}_SHA256SUMS'
+  algorithm: sha256
+signs:
+  - artifacts: checksum
+    args:
+      - "--local-user"
+      - "8027BAE6AC0BD6435F101476298E9A230D7E591E"
+      - "--output"
+      - "${signature}"
+      - "--detach-sign"
+      - "${artifact}"
+snapshot:
+  name_template: "{{ .Version }}-next"
