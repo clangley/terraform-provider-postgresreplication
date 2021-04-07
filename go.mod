@@ -4,6 +4,7 @@ go 1.13
 
 require (
 	github.com/cockroachdb/apd v1.1.0 // indirect
+	github.com/form3tech-oss/terraform-provider-postgresreplication v0.8.0
 	github.com/gofrs/uuid v3.2.0+incompatible // indirect
 	github.com/hashicorp/golang-lru v0.5.3 // indirect
 	github.com/hashicorp/terraform v0.12.16
